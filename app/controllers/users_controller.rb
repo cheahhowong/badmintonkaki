@@ -8,9 +8,9 @@ class UsersController < ApplicationController
 		@user = User.find_by(email: params[:email])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
-			redirect_to root_path
+			redirect_to '/users/show'
 		else
-			
+			redirect_to root_path
 		end 	
 	end
 
@@ -23,9 +23,9 @@ class UsersController < ApplicationController
 		@new_user = User.new(user_params)
 		if @new_user.save
 			session[:user_id] = @new_user.id
-			redirect_to root_path
+			redirect_to '/users/show'
 		else
-
+			redirect_to root_path
 		end
 	end 
 
