@@ -1,27 +1,24 @@
 module UsersHelper
 
-# This will return the current user, if they exist
-# Replace with code that works with your application
-  def current_user
-    if session[:user_id]
-      @current_user ||= User.find_by_id(session[:user_id])
-    end
+def signed_in?
+  if User.all != nil
+    session[:user_id] != nil
   end
+end
 
-  # Returns true if current_user exists, false otherwise
-  def logged_in?
-    !current_user.nil?
+def current_user
+  if session[:user_id] != nil
+    @current_user = Affiliate.find(session[:affiliate_id])
   end
-  
-  # a convenient method to set the session to given user's id with the `:user_id` key
-  def sign_in(user)
-    session[:user_id] = user.id
-  end
+end
 
-  # clears the session by setting the value of `:user_id` key to `nil`
-  def sign_out
-    # session[:user_id] = nil
-    session.clear
+def flash_class(level)
+  case level
+    when "info" then "alert alert-info"
+    when "success" then "alert alert-success"
+    when "errors" then "alert alert-warning"
+    when "alert" then "alert alert-danger"
   end
+end
 
 end
