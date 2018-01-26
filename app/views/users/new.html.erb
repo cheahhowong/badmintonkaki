@@ -1,0 +1,44 @@
+<%= form_for User.new, url: users_path, method: :post do |form| %>
+    <div>
+        <%= form.text_field :first_name, placeholder: 'First Name', class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :last_name, placeholder: 'Last Name', class: "form-control" %>
+    </div>
+
+    <div>
+        <%= form.text_field :email, placeholder: 'Email' , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :phone, placeholder: 'Phone' , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :address, placeholder: 'Address' , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :postcode, placeholder: 'Postcode', class: "form-control"%>
+    </div>  
+
+    <div>
+        <%= form.select :state, options_for_select(["Selangor","Kuala Lumpur"]) , class: "form-control"%>
+    </div>
+
+    <div>
+        <% city = CS.cities(:"10", :my) %>
+        <% city << "Kuala Lumpur" %>
+        <%= form.select :city, options_for_select(city) , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.password_field :password ,placeholder: 'Password' , class: "form-control"%>
+    </div>
+
+    <div>
+      <%= form.submit "Create an account", class: "text-field btn-submit form-control" %>
+    </div>
+
+ <% end  %> 
