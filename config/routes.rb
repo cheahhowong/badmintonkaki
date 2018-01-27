@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   resources :users, except: :index
 
+  get "/auth/:provider/callback" => "users#create_from_omniauth"
 
 end
