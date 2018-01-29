@@ -1,6 +1,9 @@
 <%= render partial: "/layouts/navbar" %>
 
 <h1>All Badminton Session Available</h1>
+
+<%= button_to "Search Badminton Session", "/events/search", :method => "get", class: "btn btn-default" %>
+
 <ul>
 	<% @event.each do |t| %>
 	<li><%= t.title %></li>
