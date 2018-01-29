@@ -1,1 +1,29 @@
 <%= render partial: "/layouts/navbar" %>
+
+<h1>All Badminton Session Available</h1>
+<ul>
+	<% @event.each do |t| %>
+	<li><%= t.title %></li>
+	<li><%= t.title %></li>
+	<li><%= t.description %></li>
+	<li><%= t.start_date %></li>
+	<li><%= t.start_time.strftime('%H.%M %p') %></li>
+	<li><%= t.end_time.strftime('%H.%M %p') %></li>
+	<li><%= t.address %></li>
+	<li><%= t.state %></li>
+	<li><%= t.city %></li>
+	<li><%= link_to "View", event_path(t.id) %></li>
+		<% if signed_in? %>
+			<% if t.relationships.find_by(user_id: current_user.id) %>
+			<li>
+			<% else %>
+				<%= form_for Relationship.new, method: :post do |f| %>
+				<%= f.hidden_field :event_id, value:t.id %>
+				<%= f.submit "Join Session" %>
+				<% end %>
+			<% end %>
+			</li>
+		<% end %>
+	</br>
+	<% end %>
+</ul>

@@ -4,6 +4,8 @@ class User < ApplicationRecord
 	include BCrypt
 	has_secure_password
 	has_many :authentications, dependent: :destroy
+  has_many :relationships
+  has_many :events, through: :relationships
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
       if auth_hash.provider == 'google_oauth2'

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/users/sign_out" => "users#sign_out", as: "user_sign_out"
 
   resources :users, except: :index
+  resources :events, except: :index
+  resources :relationships, except: :index
 
   get "/auth/:provider/callback" => "users#create_from_omniauth"
 

@@ -1,7 +1,7 @@
-<%= form_tag user_sign_in_path do %>
+<%= form_for User.new, url: user_sign_in_path do |form| %>
 
-<%= text_field_tag "user[email]", nil, placeholder: 'Email', class:"form-control"%>
-<%= password_field_tag "user[password]",nil, placeholder: 'Password', class:"form-control" %>
-<%= submit_tag "Sign In", class:"btn btn-primary" %>
+<%= form.text_field :email, placeholder: 'Email', class:"form-control" %>
+<%= form.text_field :password, placeholder: 'Password', class:"form-control" %>
+<%= form.submit "Sign In", class:"text-field btn-submit form-control" %>
 
 <% end %>
