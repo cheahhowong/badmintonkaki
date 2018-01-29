@@ -12,6 +12,10 @@ class EventsController < ApplicationController
 	def show
 		@event = Event.find_by(id: params[:id])
 		@participant = @event.relationships
+		@hash = Gmaps4rails.build_markers(@event) do |job, marker|
+            marker.lat job.latitude
+            marker.lng job.longitude
+        end
 	end
 
 	def edit
