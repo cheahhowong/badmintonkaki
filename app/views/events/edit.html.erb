@@ -1,0 +1,44 @@
+<%= form_for @event, url: event_path, method: :patch do |form| %>
+    <div>
+        <%= form.text_field :title, placeholder: 'Title', class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :description, placeholder: 'Description', class: "form-control" %>
+    </div>
+
+    <div>
+        <%= form.date_field :start_date, placeholder: 'Start Date' , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.time_field :start_time, placeholder: 'Start Time' , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.time_field :end_time, placeholder: 'End Time' , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :address, placeholder: 'Address', class: "form-control"%>
+    </div>  
+
+    <div>
+        <%= form.select :state, options_for_select(["Selangor","Kuala Lumpur"]) , class: "form-control"%>
+    </div>
+
+    <div>
+        <% city = CS.cities(:"10", :my) %>
+        <% city << "Kuala Lumpur" %>
+        <%= form.select :city, options_for_select(city) , class: "form-control"%>
+    </div>
+
+    <div>
+        <%= form.text_field :postcode,placeholder: 'Postcode', class: "form-control"%>
+    </div>
+
+    <div>
+      <%= form.submit "Create Event", class: "text-field btn-submit form-control" %>
+    </div>
+
+ <% end  %> 

@@ -1,0 +1,24 @@
+<%= render partial: "/layouts/navbar" %>
+
+<ul>
+	<li><%= @event.title %></li>
+	<li><%= @event.description %></li>
+	<li><%= @event.start_date %></li>
+	<li><%= @event.start_time.strftime('%H.%M %p') %></li>
+	<li><%= @event.end_time.strftime('%H.%M %p') %></li>
+	<li><%= @event.address %></li>
+	<li><%= @event.state %></li>
+	<li><%= @event.city %></li>
+	<% if current_user.id == @event.id %>
+		<li><%= link_to "Edit Badminton Session Details", edit_event_path(@event.id) %></li>
+		<li><%= link_to "Delete the badminton session ", event_path(@event.id), method: :delete %></li>		
+	<% end %>
+</ul>
+
+<h2>List of participant</h2>
+
+<ul>
+	<% @participant.each do |t| %>
+		<li><%= t.user.first_name %></li>
+	<% end %>
+</ul>

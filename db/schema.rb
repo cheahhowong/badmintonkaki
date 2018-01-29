@@ -42,11 +42,10 @@ ActiveRecord::Schema.define(version: 20180126164729) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer  "role",       default: 0
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_relationships_on_event_id", using: :btree
     t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
   end

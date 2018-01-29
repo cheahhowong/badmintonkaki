@@ -1,1 +1,31 @@
 <%= render partial: "/layouts/navbar" %>
+
+<div class="container">
+	<ul>
+		<li><%= @user.first_name %></li>
+		<li><%= @user.last_name %></li>
+		<li><%= @user.email %></li>
+	</ul>
+
+	<%= link_to "Create Event", new_event_path %>
+
+	<% if current_user.id == @user.id %>
+		<%= link_to "Edit Own Profile", edit_user_path(current_user.id) %>
+	<% end %>
+
+	<h2>List of Your Badminton Session</h2>
+	<ul>
+		<% @badmintonsession.each do |t| %>
+			<li><%= t.title %></li>
+			<li><%= t.description %></li>
+			<li><%= t.start_date %></li>
+			<li><%= t.start_time.strftime('%H.%M %p') %></li>
+			<li><%= t.end_time.strftime('%H.%M %p') %></li>
+			<li><%= t.address %></li>
+			<li><%= t.state %></li>
+			<li><%= t.city %></li>
+			<li><%= link_to "View", event_path(t.id) %></li>
+			</br>
+		<% end %>
+	</ul>	
+</div>
