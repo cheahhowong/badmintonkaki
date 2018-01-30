@@ -1,14 +1,12 @@
 module ApplicationHelper
 
 def signed_in?
-  if User.all != nil
-    session[:user_id] != nil
-  end
+  !current_user.nil?
 end
 
 def current_user
-  if session[:user_id] != nil
-    @current_user = User.find(session[:user_id])
+  if cookies[:auth_token] != nil
+    @current_user ||= User.find_by(auth_token: cookies[:auth_token]) if cookies[:auth_token]
   end
 end
 

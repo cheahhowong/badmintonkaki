@@ -1,7 +1,14 @@
 <%= form_for User.new, url: user_sign_in_path do |form| %>
 
 <%= form.text_field :email, placeholder: 'Email', class:"form-control" %>
-<%= form.text_field :password, placeholder: 'Password', class:"form-control" %>
+<%= form.password_field :password, placeholder: 'Password', class:"form-control" %>
 <%= form.submit "Sign In", class:"text-field btn-submit form-control" %>
+
+<div>
+    <%= form.label :remember_me do  %>
+    <%= form.check_box :remember_me %>
+    <span>Remember Me</span>
+    <% end %>
+</div>
 
 <% end %>

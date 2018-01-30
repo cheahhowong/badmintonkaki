@@ -17,7 +17,11 @@ class UsersController < ApplicationController
 	def sign_in
 		@user = User.find_by(email: params[:user][:email])
 		if @user && @user.authenticate(params[:user][:password])
-			session[:user_id] = @user.id
+			if params[:user][:remember_me]
+      			cookies.permanent[:auth_token] = @user.auth_token
+    		else
+      			cookies[:auth_token] = @user.auth_token
+    		end
 			redirect_to user_path(@user.id)
 		else
 			redirect_to root_path
@@ -25,18 +29,22 @@ class UsersController < ApplicationController
 	end
 
 	def sign_in_facebook(user)
-		session[:user_id] = user.id
+		cookies[:auth_token] = user.auth_token
 	end
 
 	def sign_out
-		session.clear
+		cookies.delete(:auth_token)
 		redirect_to root_path
 	end
 
 	def create
 		@new_user = User.new(user_params)
 		if @new_user.save
-			session[:user_id] = @new_user.id
+			if params[:user][:remember_me]
+      			cookies.permanent[:auth_token] = @new_user.auth_token
+    		else
+      			cookies[:auth_token] = @new_user.auth_token
+    		end
 			redirect_to user_path(@new_user.id)
 		else
 			redirect_to root_path
@@ -89,5 +97,5 @@ end
 private
 
 def user_params
-	params.require(:user).permit(:first_name, :last_name, :email, :password, :phone, :address, :city, :postcode, :state)
+	params.require(:user).permit(:first_name, :last_name, :email, :password, :phone, :address, :city, :postcode, :state, :auth_token)
 end
