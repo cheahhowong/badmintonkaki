@@ -2,6 +2,8 @@ class Event < ApplicationRecord
 	has_many :relationships, dependent: :destroy
   	has_many :users, through: :relationships
 
+  	validates_presence_of :start_date, :start_time, :end_time, :address, :state, :city, :postcode
+
   	def full_street_address
  		[address,postcode,city,state].compact.join(',')
 	end

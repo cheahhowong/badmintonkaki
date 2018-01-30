@@ -7,6 +7,16 @@ class User < ApplicationRecord
   has_many :relationships
   has_many :events, through: :relationships
 
+  before_create {generate_token(:auth_token)}
+  attr_accessor :remember_me
+  validates_presence_of :first_name, :last_name, :email, :password
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
 	def self.create_with_auth_and_hash(authentication, auth_hash)
       if auth_hash.provider == 'google_oauth2'
         user = self.create!(
