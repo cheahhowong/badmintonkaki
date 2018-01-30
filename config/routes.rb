@@ -6,10 +6,15 @@ Rails.application.routes.draw do
   get "/users/get_sign_in" => "users#get_sign_in", as: "user_get_sign_in"
   get "/users/sign_out" => "users#sign_out", as: "user_sign_out"
 
+  get "/events/search" => "events#search", as: "events_search"
+  
   resources :users, except: :index
   resources :events, except: :index
   resources :relationships, except: :index
 
   get "/auth/:provider/callback" => "users#create_from_omniauth"
+
+
+
 
 end
