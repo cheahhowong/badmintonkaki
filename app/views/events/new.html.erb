@@ -38,6 +38,10 @@
     </div>
 
     <div>
+        <%= form.hidden_field :user_id, value:current_user.id %>
+    </div>
+
+    <div>
       <%= form.submit "Create Event", class: "text-field btn-submit form-control" %>
     </div>
 
