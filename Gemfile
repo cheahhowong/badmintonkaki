@@ -29,6 +29,7 @@ gem 'omniauth-facebook'
 gem 'bcrypt', '~> 3.1.7'
 gem 'city-state'
 gem 'omniauth-facebook'
+gem 'capybara'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
