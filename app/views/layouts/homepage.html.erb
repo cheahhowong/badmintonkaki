@@ -20,6 +20,7 @@
 	<li><h4 class="textcustomize">End Time: <%= t.end_time.strftime('%H.%M %p') %></h4></li>
 	<li><h4 class="textcustomize">Address: <%= t.address %>,<%= t.city %>,<%= t.state %></h4></li>
 	<li><%= link_to "View", event_path(t.id) ,class:"btn btn-primary btn-lg" %></li>
+	</br>
 		<% if signed_in? %>
 			<% if t.relationships.find_by(user_id: current_user.id) %>
 			<% else %>
@@ -27,7 +28,7 @@
 				<%= form_for Relationship.new, url: relationships_path, method: :post, class:"btn btn-primary btn-lg" do |f| %>
 				<%= f.hidden_field :event_id, value:t.id %>
 				<%= f.hidden_field :user_id, value:current_user.id %>
-				<%= f.submit "Join Session" %>
+				<%= f.submit "Join Session", class:"joinformsubmit" %>
 				<% end %>
 			<% end %>
 			</li>

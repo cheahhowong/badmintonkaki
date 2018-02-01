@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+before_action :checkevent, only: [:edit, :show, :create]
 
 	def create
 		@new_event = current_user.events.build(event_params)
@@ -43,4 +44,12 @@ end
 private
 def event_params
 	params.require(:event).permit(:title,:description,:start_date,:start_time,:end_time,:address,:city,:postcode,:state,:latitude,:longitude,:user_id)
+end
+
+def checkevent
+  @event = Event.find_by(id: params[:id])
+  if signed_in?
+  else
+    redirect_to root_path
+  end
 end

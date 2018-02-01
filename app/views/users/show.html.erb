@@ -5,26 +5,25 @@
 <div class="container">
 
 	<div class="jumbotron jumbotroncustomize">
-	<ul class="classoful">
-		<li><%= @user.first_name %></li>
-		<li><%= @user.last_name %></li>
-		<li><%= @user.email %></li>
-	</ul>
+		<ul class="classoful">
+			<li><h3 class="usershowheader"><%= @user.first_name %> <%= @user.last_name %></h3></li>
+			<li><h3 class="usershowheader"><%= @user.email %></h3></li>
+		</ul>
 
-	<div id="searchbutton">
-		<%= link_to "Create Event", new_event_path, class: "btn btn-primary btn-lg" %>
-	</div>
-
-	</br>
-
-	<% if current_user.id == @user.id %>
 		<div id="searchbutton">
-			<%= link_to "Edit Own Profile", edit_user_path(current_user.id), class: "btn btn-primary btn-lg" %>
+			<%= link_to "Create Event", new_event_path, class: "btn btn-primary btn-lg" %>
 		</div>
-	<% end %>
+
+		</br>
+
+		<% if current_user.id == @user.id %>
+			<div id="searchbutton">
+				<%= link_to "Edit Own Profile", edit_user_path(current_user.id), class: "btn btn-primary btn-lg" %>
+			</div>
+		<% end %>
 	</div>
 
-	<h2 id="homepageTitle">List of Your Badminton Session</h2>
+	<h2 id="userpageTitle">List of Your Badminton Session</h2>
 
 	<ul class="classoful">
 		<% @badmintonsession.each do |t| %>

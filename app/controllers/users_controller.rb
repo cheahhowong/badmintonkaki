@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :checkuser, only: [:edit]
+  before_action :checkuser, only: [:edit, :show]
 
 	def index
 		@event = Event.all.order(updated_at: :desc)
@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find_by(id: params[:id])
 		@badmintonsession = @user.events
 	end
 

@@ -1,39 +1,54 @@
+<%= render partial: "/layouts/navbar" %>
+
+<div class="usernewbackground">
+
+<div class="container">
+
 <%= form_for Event.new, url: events_path, method: :post do |form| %>
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">Title</label>
         <%= form.text_field :title, placeholder: 'Title', class: "form-control"%>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">Description</label>
         <%= form.text_field :description, placeholder: 'Description', class: "form-control" %>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">Start Date</label>
         <%= form.date_field :start_date, placeholder: 'Start Date' , class: "form-control"%>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">Start Time</label>
         <%= form.time_field :start_time, placeholder: 'Start Time' , class: "form-control"%>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">End Time</label>
         <%= form.time_field :end_time, placeholder: 'End Time' , class: "form-control"%>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">Address</label>
         <%= form.text_field :address, placeholder: 'Address', class: "form-control"%>
     </div>  
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">State</label>
         <%= form.select :state, options_for_select(["Selangor","Kuala Lumpur"]) , class: "form-control"%>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">City</label>
         <% city = CS.cities(:"10", :my) %>
         <% city << "Kuala Lumpur" %>
         <%= form.select :city, options_for_select(city) , class: "form-control"%>
     </div>
 
-    <div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" id="formgrouptext">Postcode</label>
         <%= form.text_field :postcode,placeholder: 'Postcode', class: "form-control"%>
     </div>
 
@@ -41,8 +56,12 @@
         <%= form.hidden_field :user_id, value:current_user.id %>
     </div>
 
-    <div>
-      <%= form.submit "Create Event", class: "text-field btn-submit form-control" %>
+    <div class="form-group">
+        <%= form.submit "Create Event", class: "text-field btn-submit form-control" %>
     </div>
 
  <% end  %> 
+
+ </div>
+
+ </div>

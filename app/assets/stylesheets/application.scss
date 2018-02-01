@@ -7,6 +7,10 @@
   	min-height: 659.5px;
 }
 
+.classoful{
+	padding: 0;
+}
+
 .classoful li{
 	list-style: none;
 }
@@ -42,4 +46,21 @@
 
 .fillerdiv{
 	height: 150px;
+}
+
+.usershowheader{
+	text-align: center;
+}
+
+#userpageTitle{
+	padding-left: 15px;
+	color: white;
+	text-align: left;
+}
+
+.joinformsubmit{
+	color: white;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	height: 46px;
 }

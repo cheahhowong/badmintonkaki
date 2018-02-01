@@ -31,7 +31,7 @@ $(document).ready(function(){
 				if(response['saved']==true){
 					console.log('done')
 					$formSubmit.val('Joined')
-					var x = "<li>"+ response.username + "</li>"
+					var x = "<li><h3>"+ response.username + "</h3></li>"
 					$('#namejquery').append(x)
 					$formSubmit.attr('disabled', true)
 					$('#countjquery').text(response.count)

@@ -1,46 +1,69 @@
 <%= render partial: "/layouts/navbar" %>
 
-<ul>
-	<li><%= @event.title %></li>
-	<li><%= @event.description %></li>
-	<li><%= @event.start_date %></li>
-	<li><%= @event.start_time.strftime('%H.%M %p') %></li>
-	<li><%= @event.end_time.strftime('%H.%M %p') %></li>
-	<li><%= @event.address %></li>
-	<li><%= @event.state %></li>
-	<li><%= @event.city %></li>
-	<li><%= @event.postcode %></li>
+<div class="homepagebackground">
+
+<div class="container">
+
+<div class="jumbotron jumbotroncustomize">
+<ul class="classoful">
+	<li><h2 class="usershowheader">Details</h2></li>
+	<li><h4 class="usershowheader"><%= @event.title %></h4></li>
+	<li><h4 class="usershowheader"><%= @event.description %></h4></li>
+	<li><h4 class="usershowheader"><%= @event.start_date %></h4></li>
+	<li><h4 class="usershowheader"><%= @event.start_time.strftime('%H.%M %p') %></h4></li>
+	<li><h4 class="usershowheader"><%= @event.end_time.strftime('%H.%M %p') %></h4></li>
+	<li><h4 class="usershowheader"><%= @event.address %>,<%= @event.city %>,<%= @event.state %>,<%= @event.postcode %></h4></li>
+
 	<% if current_user.id == @event.user_id %>
-		<li><%= link_to "Edit Badminton Session Details", edit_event_path(@event.id) %></li>
-		<li><%= link_to "Delete the badminton session ", event_path(@event.id), method: :delete %></li>		
+		<div id="searchbutton">
+			<li><%= link_to "Edit", edit_event_path(@event.id), class: "btn btn-primary btn-lg" %></li>
+			</br>
+			<li><%= button_to "Delete", event_path(@event.id), method: :delete, class: "btn btn-primary btn-lg" %></li>
+			</br>
+		</div>
 	<% end %>
 	<% if signed_in? %>
 		<% if @array.include?(current_user.id) %>
 		<% else %>
-			<li>
-				<%= form_for Relationship.new, url: relationships_path, method: :post, html: {id: "join-form"} do |f| %>
-				<%= f.hidden_field :event_id, value:@event.id %>
-				<%= f.hidden_field :user_id, value:current_user.id %>
-				<%= f.submit "Join Session" %>
-				<% end %>
-			</li>
+			<div id="searchbutton">
+				<li>
+					<%= form_for Relationship.new, url: relationships_path, method: :post, html: {id: "join-form"} do |f| %>
+					<%= f.hidden_field :event_id, value:@event.id %>
+					<%= f.hidden_field :user_id, value:current_user.id %>
+					<%= f.submit "Join Session", class:"joinformsubmit" %>
+					<% end %>
+				</li>
+			</div>
 		<% end %>
 	<% end %>
 </ul>
+</div>
 
-<h2>List of participants</h2>
+<div class="jumbotron jumbotroncustomize">
+	<h2>List of participants</h2>
 
-<ul id="namejquery">
-	<% @participant.each do |t| %>
-		<li><%= t.user.first_name %></li>
-	<% end %>
-</ul>
+	<ul id="namejquery">
+		<% @participant.each do |t| %>
+			<li><h3><%= t.user.first_name %></h3></li>
+		<% end %>
+	</ul>
+</div>
 
-<h2>Total number of participants</h2>
-<h3 id="countjquery"><%= @participant.count %></h3>
+<div class="jumbotron jumbotroncustomize">
+	<h2>Total number of participants</h2>
+	<h3 id="countjquery"><%= @participant.count %></h3>
+</div>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+</div>
+
+<div class="container">
+
+	<div style='width: 1000px; margin: 0 auto;'>
+	  <div id="map" style='width: 1000px; height: 400px; margin: 0 auto;'></div>
+	</div>
+
 </div>
 
 <script type="text/javascript">
