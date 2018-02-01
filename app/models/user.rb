@@ -9,8 +9,9 @@ class User < ApplicationRecord
 
   before_create {generate_token(:auth_token)}
   attr_accessor :remember_me
-  validates_presence_of :first_name, :last_name, :email, :password
+  validates_presence_of :first_name, :last_name, :email
   validates :email, uniqueness: true
+  validates :password, presence: true, on: :create
 
   def generate_token(column)
     begin
