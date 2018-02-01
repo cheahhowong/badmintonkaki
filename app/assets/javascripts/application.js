@@ -33,7 +33,7 @@ $(document).ready(function(){
 				
 				if(response['saved']==true){
 					$formSubmit.val('Shorten')
-					let x = "<tr><td><a href=\""+response.long_url+"\">"+response.long_url+"</a></td>"+"<td><a href=\""+response.short_url+"\">https://roxasbitly.herokuapp.com/"+response.short_url+"</a></td>"+"<td><a href=\""+response.count+"\">"+response.count+"</a></td></tr>"
+					var x = "<tr><td><a href=\""+response.long_url+"\">"+response.long_url+"</a></td>"+"<td><a href=\""+response.short_url+"\">https://roxasbitly.herokuapp.com/"+response.short_url+"</a></td>"+"<td><a href=\""+response.count+"\">"+response.count+"</a></td></tr>"
 					$('#table table').append(x)
 				}
 				else {
