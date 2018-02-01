@@ -12,14 +12,12 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
-//= require jquery_ujs
-//= require turbolinks
 //= require underscore
 //= require gmaps/google
 //= require_tree .
 
 $(document).ready(function(){
-	$("#").submit(function(event){
+	$("#join-form").submit(function(event){
 		event.preventDefault();
 		$form = $(event.target)
 		$formSubmit = $form.find('input[type="submit"]')
@@ -30,15 +28,16 @@ $(document).ready(function(){
 			data: $form.serialize(),
 			dataType: "JSON",
 			success: function(response){
-				
 				if(response['saved']==true){
-					$formSubmit.val('Shorten')
-					var x = "<tr><td><a href=\""+response.long_url+"\">"+response.long_url+"</a></td>"+"<td><a href=\""+response.short_url+"\">https://roxasbitly.herokuapp.com/"+response.short_url+"</a></td>"+"<td><a href=\""+response.count+"\">"+response.count+"</a></td></tr>"
-					$('#table table').append(x)
+					console.log('done')
+					$formSubmit.val('Joined')
+					var x = "<li>"+ response.username + "</li>"
+					$('#namejquery').append(x)
+					$formSubmit.attr('disabled', true)
+					$('#countjquery').text(response.count)
 				}
 				else {
 					alert("Please enter valid URL!")
-					$formSubmit.val('Shorten')
 				}
 			},
 			

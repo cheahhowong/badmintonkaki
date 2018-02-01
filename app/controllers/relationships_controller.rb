@@ -2,8 +2,11 @@ class RelationshipsController < ApplicationController
 
 	def create
 		@relationship = Relationship.new(relationship_params)
+		@event = Event.find_by(id: params[:relationship][:event_id])
 		if @relationship.save
-			redirect_to user_path(current_user.id)
+		@name = current_user.first_name
+		@participant = @event.relationships.count
+			render json: {saved: true, count: @participant, username: @name}
 		else
 			redirect_to root_path
 		end 

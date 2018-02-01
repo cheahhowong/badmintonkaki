@@ -1,31 +1,46 @@
 <%= render partial: "/layouts/navbar" %>
 
+<div class="homepagebackground">
+
 <div class="container">
-	<ul>
+
+	<div class="jumbotron jumbotroncustomize">
+	<ul class="classoful">
 		<li><%= @user.first_name %></li>
 		<li><%= @user.last_name %></li>
 		<li><%= @user.email %></li>
 	</ul>
 
-	<%= link_to "Create Event", new_event_path %>
+	<div id="searchbutton">
+		<%= link_to "Create Event", new_event_path, class: "btn btn-primary btn-lg" %>
+	</div>
+
+	</br>
 
 	<% if current_user.id == @user.id %>
-		<%= link_to "Edit Own Profile", edit_user_path(current_user.id) %>
+		<div id="searchbutton">
+			<%= link_to "Edit Own Profile", edit_user_path(current_user.id), class: "btn btn-primary btn-lg" %>
+		</div>
 	<% end %>
+	</div>
 
-	<h2>List of Your Badminton Session</h2>
-	<ul>
+	<h2 id="homepageTitle">List of Your Badminton Session</h2>
+
+	<ul class="classoful">
 		<% @badmintonsession.each do |t| %>
-			<li><%= t.title %></li>
-			<li><%= t.description %></li>
-			<li><%= t.start_date %></li>
-			<li><%= t.start_time.strftime('%H.%M %p') %></li>
-			<li><%= t.end_time.strftime('%H.%M %p') %></li>
-			<li><%= t.address %></li>
-			<li><%= t.state %></li>
-			<li><%= t.city %></li>
-			<li><%= link_to "View", event_path(t.id) %></li>
+		<div class="jumbotron jumbotroncustomize">
+			<li><h4 class="textcustomize">Title: <%= t.title %></h4></li>
+			<li><h4 class="textcustomize">Description: <%= t.description %></h4></li>
+			<li><h4 class="textcustomize">Start Date: <%= t.start_date %></h4></li>
+			<li><h4 class="textcustomize">Start Time: <%= t.start_time.strftime('%H.%M %p') %></h4></li>
+			<li><h4 class="textcustomize">End Time: <%= t.end_time.strftime('%H.%M %p') %></h4></li>
+			<li><h4 class="textcustomize">Address: <%= t.address %>,<%= t.city %>,<%= t.state %></h4></li>
+			<li><%= link_to "View", event_path(t.id),class:"btn btn-primary btn-lg" %></li>
 			</br>
+		</div>
 		<% end %>
-	</ul>	
+	</ul>
+
+</div>
+
 </div>

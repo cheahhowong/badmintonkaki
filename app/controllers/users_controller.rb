@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :checkuser, only: [:edit]
 
 	def index
-		@event = Event.all
+		@event = Event.all.order(updated_at: :desc)
 		render '/layouts/homepage'
 	end
 
@@ -98,4 +99,12 @@ private
 
 def user_params
 	params.require(:user).permit(:first_name, :last_name, :email, :password, :phone, :address, :city, :postcode, :state, :auth_token)
+end
+
+def checkuser
+  @user = User.find_by(id: params[:id])
+  if signed_in? && current_user.id == @user.id
+  else
+    redirect_to root_path
+  end
 end

@@ -18,7 +18,7 @@
 		<% if @array.include?(current_user.id) %>
 		<% else %>
 			<li>
-				<%= form_for Relationship.new, url: relationships_path, method: :post do |f| %>
+				<%= form_for Relationship.new, url: relationships_path, method: :post, html: {id: "join-form"} do |f| %>
 				<%= f.hidden_field :event_id, value:@event.id %>
 				<%= f.hidden_field :user_id, value:current_user.id %>
 				<%= f.submit "Join Session" %>
@@ -30,14 +30,14 @@
 
 <h2>List of participants</h2>
 
-<ul>
+<ul id="namejquery">
 	<% @participant.each do |t| %>
 		<li><%= t.user.first_name %></li>
 	<% end %>
 </ul>
 
 <h2>Total number of participants</h2>
-<h3><%= @participant.count %></h3>
+<h3 id="countjquery"><%= @participant.count %></h3>
 
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>

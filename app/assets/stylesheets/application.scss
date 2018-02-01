@@ -1,2 +1,45 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.homepagebackground{
+	background-image: image-url("badmintonbackground.jpg");
+  	background-size: cover;
+  	min-height: 659.5px;
+}
+
+.classoful li{
+	list-style: none;
+}
+
+#homepageTitle{
+	color: white;
+	text-align: center;
+}
+
+#searchbutton{
+	text-align: center;
+}
+
+.jumbotroncustomize{
+	margin: 10px;
+	opacity: 0.9;
+}
+
+.textcustomize{
+	color: black;
+	font-weight: 900;
+}
+
+.usernewbackground{
+	background-image: image-url("backgroundimage.jpg");
+  	background-size: cover;
+  	min-height: 659.5px;
+}
+
+#formgrouptext{
+	color: white;
+}
+
+.fillerdiv{
+	height: 150px;
+}
