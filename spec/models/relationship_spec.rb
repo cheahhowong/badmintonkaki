@@ -25,15 +25,8 @@ RSpec.describe Relationship, :type => :model do
   end
 
   describe "Associations" do
-  it "belongs to user" do
-    assc = described_class.reflect_on_association(:user)
-    expect(assc.macro).to eq :belongs_to
-  end
-
-  it "belongs to event" do
-    assc = described_class.reflect_on_association(:event)
-    expect(assc.macro).to eq :belongs_to
-  end
+    it {should belong_to(:user)}
+    it {should belong_to(:event)}
   end
   
 end

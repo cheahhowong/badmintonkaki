@@ -2,7 +2,6 @@ class RelationshipsController < ApplicationController
 
 	def create
 		@relationship = Relationship.new(relationship_params)
-		@relationship.user_id = current_user.id
 		if @relationship.save
 			redirect_to user_path(current_user.id)
 		else
