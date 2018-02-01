@@ -14,6 +14,18 @@
 		<li><%= link_to "Edit Badminton Session Details", edit_event_path(@event.id) %></li>
 		<li><%= link_to "Delete the badminton session ", event_path(@event.id), method: :delete %></li>		
 	<% end %>
+	<% if signed_in? %>
+		<% if @array.include?(current_user.id) %>
+		<% else %>
+			<li>
+				<%= form_for Relationship.new, url: relationships_path, method: :post do |f| %>
+				<%= f.hidden_field :event_id, value:@event.id %>
+				<%= f.hidden_field :user_id, value:current_user.id %>
+				<%= f.submit "Join Session" %>
+				<% end %>
+			</li>
+		<% end %>
+	<% end %>
 </ul>
 
 <h2>List of participants</h2>

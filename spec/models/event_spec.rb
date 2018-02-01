@@ -47,15 +47,8 @@ RSpec.describe Event, :type => :model do
   end
 
   describe "Associations" do
-  it "has many users" do
-    assc = described_class.reflect_on_association(:users)
-    expect(assc.macro).to eq :has_many
-  end
-
-  it "has many relationships" do
-    assc = described_class.reflect_on_association(:relationships)
-    expect(assc.macro).to eq :has_many
-  end
+    it {should have_many(:users)}
+    it {should have_many(:relationships)}
   end
 
 end

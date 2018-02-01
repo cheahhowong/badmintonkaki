@@ -1,51 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  subject {
-    described_class.new(first_name: "Anything", last_name: "lorem", email: "zzz@example.com", 
-    	phone: "12345", address: "asfdsf", city: "Teluk Intan", state: "Perak", postcode: "2323",
-    	password: "5678")
-  }
+  context "validations" do
+    subject {
+      described_class.new(first_name: "Anything", last_name: "lorem", email: "lop@example.com", 
+      	phone: "12345", address: "asfdsf", city: "Teluk Intan", state: "Perak", postcode: "2323",
+      	password: "5678")
+    }
 
-  it "is valid with valid attributes" do
-    expect(subject).to be_valid
-  end
+    it "is valid with valid attributes" do
+      expect(subject).to be_valid
+    end
 
-  it "is not valid without a first_name" do
-    subject.first_name = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a first_name" do
+      subject.first_name = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid without a last_name" do
-    subject.last_name = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a last_name" do
+      subject.last_name = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid without a email" do
-    subject.email = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a email" do
+      subject.email = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid without a password" do
-    subject.password = nil
-    expect(subject).to_not be_valid
+    it "is not valid without a password" do
+      subject.password = nil
+      expect(subject).to_not be_valid
+    end
+
   end
+  it { should validate_uniqueness_of(:email) }
 
   describe "Associations" do
-  it "has many authentications" do
-    assc = described_class.reflect_on_association(:authentications)
-    expect(assc.macro).to eq :has_many
-  end
-
-  it "has many relationships" do
-    assc = described_class.reflect_on_association(:relationships)
-    expect(assc.macro).to eq :has_many
-  end
-
-  it "has many events" do
-    assc = described_class.reflect_on_association(:events)
-    expect(assc.macro).to eq :has_many
-  end
+    it {should have_many(:authentications)}
+    it {should have_many(:relationships)}
+    it {should have_many(:events)}
   end
 
   describe "Generate token" do
@@ -74,5 +67,7 @@ RSpec.describe User, :type => :model do
    end
  end
 
-end
+ end
+
+
 
