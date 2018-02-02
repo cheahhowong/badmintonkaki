@@ -10,7 +10,7 @@ class Event < ApplicationRecord
 
 	def self.search (params)
 		results = Event.all
-
+		
 		results = results.where("state LIKE ?", "%#{params[:state]}%") if params[:state].present?
 		results = results.where("city LIKE ?", params[:city]) if params[:city].present?
 		results = results.where("start_date LIKE ?", params[:start_date]) if params[:start_date].present?

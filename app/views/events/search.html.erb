@@ -49,14 +49,15 @@
           <th>End Time</th>
 	      </tr>
 	    </thead>
+    
 		<% Event.search(params).each do |t| %>
 		<% if Event.search(params) != Event.all%>
 			<tbody>
 				<tr>
 				    <td><%= t.title %></td>
 				    <td><%= t.start_date %></td>
-				    <td><%= t.start_time %></td>
-				    <td><%= t.end_time %></td>
+				    <td><%= t.start_time.strftime('%H.%M %p') %></td>
+				    <td><%= t.end_time.strftime('%H.%M %p') %></td>
             <td><%= link_to "View", event_path(t.id) %></td>
 				</tr>
 			</tbody>
